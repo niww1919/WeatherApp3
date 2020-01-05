@@ -55,7 +55,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Snackbar.make(getView(),"Good", Snackbar.LENGTH_SHORT).show();
+//        Snackbar.make(getView(),"Good", Snackbar.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),"Good",Toast.LENGTH_SHORT).show();
+
 
     }
 }

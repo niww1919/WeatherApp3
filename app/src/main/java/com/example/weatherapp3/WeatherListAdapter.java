@@ -1,12 +1,16 @@
 package com.example.weatherapp3;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.ViewHolder> {
 
@@ -34,11 +38,20 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
         TextView tvListIcon;
         TextView tvListTemp;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             tvListDay = itemView.findViewById(R.id.tvListDay);
             tvListIcon = itemView.findViewById(R.id.tvListIcon);
             tvListTemp = itemView.findViewById(R.id.tvListTemp);
+
+            //fixme
+            tvListDay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Snackbar.make(itemView,"Item one", Snackbar.LENGTH_SHORT).show();
+                    Toast.makeText(itemView.getContext(),"Good",Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         void setData(String day, String icon, int temp) {
