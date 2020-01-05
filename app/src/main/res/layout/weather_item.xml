@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvListDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Day" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvListTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temp" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvListIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Icon" />
+
+</LinearLayout>
