@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,6 +44,11 @@ public class HomeFragment extends Fragment {
 
 //        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new WeatherListAdapter());
+
+        //fixme decoration to cardview
+        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
+        decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
+        recyclerView.addItemDecoration(decoration);
 
         return root;
     }

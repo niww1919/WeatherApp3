@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@color/colorAccent"
+    android:orientation="vertical"
+
+    >
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvListDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Day" />
+        android:text="Day"
+        android:gravity="center"
+        />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvListTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Temp" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvListIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Icon" />
 
-</LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.cardview.widget.CardView>

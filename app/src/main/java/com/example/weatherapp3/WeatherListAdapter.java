@@ -24,7 +24,7 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull WeatherListAdapter.ViewHolder holder, int position) {
-        holder.setData("1","Sun",2);
+        holder.setData("Friday","Sun",2);
 
     }
 
