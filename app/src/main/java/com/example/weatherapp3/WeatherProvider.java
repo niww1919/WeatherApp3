@@ -4,24 +4,12 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.example.weatherapp3.weatherApi.WeatherApi;
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.net.ssl.HttpsURLConnection;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -29,10 +17,10 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public class WeatherProvider {
-    public static final String BASE_URL = "https://api.openweathermap.org/";
-    public static final String KEY = "e83d0265c9865659af525e50e89b8edd";
-    Timer timer;
-    Handler handler = new Handler();
+    private static final String BASE_URL = "https://api.openweathermap.org/";
+    private static final String KEY = "e83d0265c9865659af525e50e89b8edd";
+    private Timer timer;
+    private Handler handler = new Handler();
 
     public static WeatherProvider instance = null;
 
@@ -59,10 +47,10 @@ public class WeatherProvider {
 // https://api.openweathermap.org/data/2.5/forecast?q=Moscow,ru&appid=e83d0265c9865659af525e50e89b8edd
 //            URL url = new URL(BASE_URL + "data/2.5/forecast?q=" +city+ ",ru&appid=" + KEY);
 
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
         Call<WeatherApi> call = retrofit.create(Openweather.class)
                 .getWeather(city + ",ru", KEY);
@@ -70,8 +58,10 @@ public class WeatherProvider {
 
         try {
             Response<WeatherApi> response = call.execute();
+//            if (response.isSuccessful())
             Log.i("getdata", response.body().getCity().getName());
             return response.body();
+
         } catch (IOException e) {
             e.printStackTrace();
             return null;

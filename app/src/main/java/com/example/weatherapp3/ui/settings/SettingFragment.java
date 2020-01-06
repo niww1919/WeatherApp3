@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -16,6 +18,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.weatherapp3.R;
+import com.squareup.picasso.Picasso;
 
 public class SettingFragment extends Fragment {
     public static final String LINK_TO_GITHUB = "https://github.com/niww1919/WeatherApp3";
@@ -45,6 +48,11 @@ public class SettingFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        Picasso.get()
+                .load("https://square.github.io/picasso/static/icon-github.png")
+                .into((ImageView) root.findViewById(R.id.ivGit));
+
+//        ((Button)root.findViewById(R.id.buttonLinkToGitHub)).add
 
         return root;
     }
