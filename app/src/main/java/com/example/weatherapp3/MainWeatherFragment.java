@@ -50,7 +50,14 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
         //todo update data
 
         ((TextView)getActivity().findViewById(R.id.tvCityName)).setText(weatherApi.getCity().getName());
-//        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf());
+        ((TextView)getActivity().findViewById(R.id.tvData)).setText(String.valueOf(weatherApi.getList().get(0).getDtTxt()));
+//        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(weatherApi.getList().indexOf(0)));
+        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(weatherApi.getList().get(0).getMain().getTemp()));
+        ((TextView)getActivity().findViewById(R.id.tvIcon)).setText(weatherApi.getList().get(0).getWeather().get(0).getIcon());
+        ((TextView)getActivity().findViewById(R.id.tvClouds)).setText("Cloudiness, % "+ weatherApi.getList().get(0).getClouds().getAll());
+        ((TextView)getActivity().findViewById(R.id.tvWind)).setText("Wind speed, m/s "+ weatherApi.getList().get(0).getWind().getSpeed());
+//        ((TextView)getActivity().findViewById(R.id.tvRain)).setText("Rain, mm "+ weatherApi.getList().get(0).getRain().get3h());//fixme is null
+//        ((TextView)getActivity().findViewById(R.id.tvSnow)).setText("Snow "+ weatherApi.getList().get(0).getSnow().get3h());
     }
 
     @Override

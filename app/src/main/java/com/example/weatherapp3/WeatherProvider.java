@@ -94,6 +94,8 @@ public class WeatherProvider {
 //                final WeatherApi weatherApi = getWeatherByOkHttp("Moscow");
 //                getWeatherByRetrofit("Omsk");// load data to log
                 Log.i("loadData", weatherApi.getCity().getName());
+//                Log.i("loadData", weatherApi.getCod());
+
                 if (weatherApi == null) {
                     return;
                 }
