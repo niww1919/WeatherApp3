@@ -25,11 +25,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="City Name" />
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvIcon"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Icon" />
+            />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTemp"
             android:layout_width="wrap_content"

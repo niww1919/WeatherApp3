@@ -1,7 +1,6 @@
 package com.example.weatherapp3;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,9 +8,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weatherapp3.weatherApi.WeatherApi;
+import com.squareup.picasso.Picasso;
 
 
 public class MainWeatherFragment extends Fragment implements WeatherProviderListener{
@@ -53,7 +54,13 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
         ((TextView)getActivity().findViewById(R.id.tvData)).setText(String.valueOf(weatherApi.getList().get(0).getDtTxt()));
 //        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(weatherApi.getList().indexOf(0)));
         ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(weatherApi.getList().get(0).getMain().getTemp()));
-        ((TextView)getActivity().findViewById(R.id.tvIcon)).setText(weatherApi.getList().get(0).getWeather().get(0).getIcon());
+
+        Picasso.get()
+                .load("http://openweathermap.org/img/wn/"+weatherApi.getList().get(0).getWeather().get(0).getIcon() +"@2x.png")
+                .resize(200,200)
+                .into((ImageView)getActivity().findViewById(R.id.ivIcon));
+
+//        ((ImageView)getActivity().findViewById(R.id.tvIcon)).(weatherApi.getList().get(0).getWeather().get(0).getIcon());
         ((TextView)getActivity().findViewById(R.id.tvClouds)).setText("Cloudiness, % "+ weatherApi.getList().get(0).getClouds().getAll());
         ((TextView)getActivity().findViewById(R.id.tvWind)).setText("Wind speed, m/s "+ weatherApi.getList().get(0).getWind().getSpeed());
 //        ((TextView)getActivity().findViewById(R.id.tvRain)).setText("Rain, mm "+ weatherApi.getList().get(0).getRain().get3h());//fixme is null
@@ -63,6 +70,6 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
     @Override
     public void onPause() {
         super.onPause();
-        WeatherProvider.getInstance().removeListener(this);
+        WeatherProvider.getInstance().removeListener(this); //fixme
     }
 }
