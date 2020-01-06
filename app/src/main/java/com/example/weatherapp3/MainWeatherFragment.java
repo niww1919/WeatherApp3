@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.weatherapp3.weatherApi.WeatherApi;
+
 
 public class MainWeatherFragment extends Fragment implements WeatherProviderListener{
 
@@ -44,11 +46,11 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
     }
 
     @Override
-    public void upDateWeather(String city, double temp) {
+    public void upDateWeather(WeatherApi weatherApi) {
         //todo update data
 
-        ((TextView)getActivity().findViewById(R.id.tvCityName)).setText(city);
-        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(temp));
+        ((TextView)getActivity().findViewById(R.id.tvCityName)).setText(weatherApi.getCity().getName());
+//        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf());
     }
 
     @Override
