@@ -9,9 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
-public class MainWeatherFragment extends Fragment {
+public class MainWeatherFragment extends Fragment implements WeatherProviderListener{
 
     public MainWeatherFragment() {
         // Required empty public constructor
@@ -36,4 +37,23 @@ public class MainWeatherFragment extends Fragment {
         super.onDetach();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        WeatherProvider.getInstance().addListener(this);
+    }
+
+    @Override
+    public void upDateWeather(String city, double temp) {
+        //todo update data
+
+        ((TextView)getActivity().findViewById(R.id.tvCityName)).setText(city);
+        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(temp));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        WeatherProvider.getInstance().removeListener(this);
+    }
 }
