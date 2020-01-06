@@ -50,7 +50,8 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
         //todo update data
 
         ((TextView)getActivity().findViewById(R.id.tvCityName)).setText(weatherApi.getName());
-//        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf());
+        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(weatherApi.getMain().getTemp()));
+
     }
 
     @Override
