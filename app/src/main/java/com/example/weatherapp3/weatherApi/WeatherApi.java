@@ -10,7 +10,7 @@ public class WeatherApi {
     private String cod;
     @SerializedName("message")
     @Expose
-    private Double message;
+    private Integer message;
     @SerializedName("cnt")
     @Expose
     private Integer cnt;
@@ -29,11 +29,11 @@ public class WeatherApi {
         this.cod = cod;
     }
 
-    public Double getMessage() {
+    public Integer getMessage() {
         return message;
     }
 
-    public void setMessage(Double message) {
+    public void setMessage(Integer message) {
         this.message = message;
     }
 

@@ -8,6 +8,9 @@ public class Main {
     @SerializedName("temp")
     @Expose
     private Double temp;
+    @SerializedName("feels_like")
+    @Expose
+    private Double feelsLike;
     @SerializedName("temp_min")
     @Expose
     private Double tempMin;
@@ -16,13 +19,13 @@ public class Main {
     private Double tempMax;
     @SerializedName("pressure")
     @Expose
-    private Double pressure;
+    private Integer pressure;
     @SerializedName("sea_level")
     @Expose
-    private Double seaLevel;
+    private Integer seaLevel;
     @SerializedName("grnd_level")
     @Expose
-    private Double grndLevel;
+    private Integer grndLevel;
     @SerializedName("humidity")
     @Expose
     private Integer humidity;
@@ -36,6 +39,14 @@ public class Main {
 
     public void setTemp(Double temp) {
         this.temp = temp;
+    }
+
+    public Double getFeelsLike() {
+        return feelsLike;
+    }
+
+    public void setFeelsLike(Double feelsLike) {
+        this.feelsLike = feelsLike;
     }
 
     public Double getTempMin() {
@@ -54,27 +65,27 @@ public class Main {
         this.tempMax = tempMax;
     }
 
-    public Double getPressure() {
+    public Integer getPressure() {
         return pressure;
     }
 
-    public void setPressure(Double pressure) {
+    public void setPressure(Integer pressure) {
         this.pressure = pressure;
     }
 
-    public Double getSeaLevel() {
+    public Integer getSeaLevel() {
         return seaLevel;
     }
 
-    public void setSeaLevel(Double seaLevel) {
+    public void setSeaLevel(Integer seaLevel) {
         this.seaLevel = seaLevel;
     }
 
-    public Double getGrndLevel() {
+    public Integer getGrndLevel() {
         return grndLevel;
     }
 
-    public void setGrndLevel(Double grndLevel) {
+    public void setGrndLevel(Integer grndLevel) {
         this.grndLevel = grndLevel;
     }
 

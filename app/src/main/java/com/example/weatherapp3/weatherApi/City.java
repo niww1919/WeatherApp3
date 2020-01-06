@@ -17,6 +17,18 @@ public class City {
     @SerializedName("country")
     @Expose
     private String country;
+    @SerializedName("population")
+    @Expose
+    private Integer population;
+    @SerializedName("timezone")
+    @Expose
+    private Integer timezone;
+    @SerializedName("sunrise")
+    @Expose
+    private Integer sunrise;
+    @SerializedName("sunset")
+    @Expose
+    private Integer sunset;
 
     public Integer getId() {
         return id;
@@ -48,6 +60,38 @@ public class City {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Integer getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(Integer population) {
+        this.population = population;
+    }
+
+    public Integer getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(Integer timezone) {
+        this.timezone = timezone;
+    }
+
+    public Integer getSunrise() {
+        return sunrise;
+    }
+
+    public void setSunrise(Integer sunrise) {
+        this.sunrise = sunrise;
+    }
+
+    public Integer getSunset() {
+        return sunset;
+    }
+
+    public void setSunset(Integer sunset) {
+        this.sunset = sunset;
     }
 
 }
