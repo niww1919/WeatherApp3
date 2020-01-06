@@ -8,6 +8,9 @@ public class Main {
     @SerializedName("temp")
     @Expose
     private Double temp;
+    @SerializedName("feels_like")
+    @Expose
+    private Double feelsLike;
     @SerializedName("temp_min")
     @Expose
     private Double tempMin;
@@ -16,19 +19,10 @@ public class Main {
     private Double tempMax;
     @SerializedName("pressure")
     @Expose
-    private Double pressure;
-    @SerializedName("sea_level")
-    @Expose
-    private Double seaLevel;
-    @SerializedName("grnd_level")
-    @Expose
-    private Double grndLevel;
+    private Integer pressure;
     @SerializedName("humidity")
     @Expose
     private Integer humidity;
-    @SerializedName("temp_kf")
-    @Expose
-    private Integer tempKf;
 
     public Double getTemp() {
         return temp;
@@ -36,6 +30,14 @@ public class Main {
 
     public void setTemp(Double temp) {
         this.temp = temp;
+    }
+
+    public Double getFeelsLike() {
+        return feelsLike;
+    }
+
+    public void setFeelsLike(Double feelsLike) {
+        this.feelsLike = feelsLike;
     }
 
     public Double getTempMin() {
@@ -54,28 +56,12 @@ public class Main {
         this.tempMax = tempMax;
     }
 
-    public Double getPressure() {
+    public Integer getPressure() {
         return pressure;
     }
 
-    public void setPressure(Double pressure) {
+    public void setPressure(Integer pressure) {
         this.pressure = pressure;
-    }
-
-    public Double getSeaLevel() {
-        return seaLevel;
-    }
-
-    public void setSeaLevel(Double seaLevel) {
-        this.seaLevel = seaLevel;
-    }
-
-    public Double getGrndLevel() {
-        return grndLevel;
-    }
-
-    public void setGrndLevel(Double grndLevel) {
-        this.grndLevel = grndLevel;
     }
 
     public Integer getHumidity() {
@@ -84,14 +70,6 @@ public class Main {
 
     public void setHumidity(Integer humidity) {
         this.humidity = humidity;
-    }
-
-    public Integer getTempKf() {
-        return tempKf;
-    }
-
-    public void setTempKf(Integer tempKf) {
-        this.tempKf = tempKf;
     }
 
 }

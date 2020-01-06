@@ -5,60 +5,85 @@ import com.google.gson.annotations.SerializedName;
 
 public class WeatherApi {
 
+    @SerializedName("base")
+    @Expose
+    private String base;
+    @SerializedName("main")
+    @Expose
+    private Main main;
+    @SerializedName("visibility")
+    @Expose
+    private Integer visibility;
+
+    @SerializedName("timezone")
+    @Expose
+    private Integer timezone;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("name")
+    @Expose
+    private String name;
     @SerializedName("cod")
     @Expose
-    private String cod;
-    @SerializedName("message")
-    @Expose
-    private Double message;
-    @SerializedName("cnt")
-    @Expose
-    private Integer cnt;
-    @SerializedName("list")
-    @Expose
-    private java.util.List<com.example.weatherapp3.weatherApi.List> list = null;
-    @SerializedName("city")
-    @Expose
-    private City city;
+    private Integer cod;
 
-    public String getCod() {
+
+    public String getBase() {
+        return base;
+    }
+
+    public void setBase(String base) {
+        this.base = base;
+    }
+
+    public Main getMain() {
+        return main;
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+    }
+
+    public Integer getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(Integer visibility) {
+        this.visibility = visibility;
+    }
+
+
+    public Integer getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(Integer timezone) {
+        this.timezone = timezone;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getCod() {
         return cod;
     }
 
-    public void setCod(String cod) {
+    public void setCod(Integer cod) {
         this.cod = cod;
-    }
-
-    public Double getMessage() {
-        return message;
-    }
-
-    public void setMessage(Double message) {
-        this.message = message;
-    }
-
-    public Integer getCnt() {
-        return cnt;
-    }
-
-    public void setCnt(Integer cnt) {
-        this.cnt = cnt;
-    }
-
-    public java.util.List<com.example.weatherapp3.weatherApi.List> getList() {
-        return list;
-    }
-
-    public void setList(java.util.List<com.example.weatherapp3.weatherApi.List> list) {
-        this.list = list;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
     }
 
 }

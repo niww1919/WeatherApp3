@@ -44,9 +44,10 @@ public class WeatherProvider {
         WeatherApi weatherApi = null; //fixme i need init weathet api??
 
         try {
-//            URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + ",ru&appid=e83d0265c9865659af525e50e89b8edd");
-            URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",ru&appid=e83d0265c9865659af525e50e89b8edd");
-            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+            URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + ",ru&appid=e83d0265c9865659af525e50e89b8edd");
+//            URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",ru&appid=e83d0265c9865659af525e50e89b8edd");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder rwData = new StringBuilder(1024);
             String temp;
@@ -57,7 +58,7 @@ public class WeatherProvider {
             Log.i("rwData", rwData.toString());
             Gson gson = new Gson();
             weatherApi = gson.fromJson(rwData.toString(), WeatherApi.class);
-            Log.i("api", weatherApi.getCity().getName());
+            Log.i("api", weatherApi.getName());
             return weatherApi;
 
         } catch (IOException e) {
@@ -69,8 +70,8 @@ public class WeatherProvider {
     static WeatherApi getWeatherByOkHttp(String city) {
 //        WeatherApi weatherApi = null;
         try {
-//            URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+",ru&appid=e83d0265c9865659af525e50e89b8edd");
-            URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q="+city+",ru&appid=e83d0265c9865659af525e50e89b8edd");
+            URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+",ru&appid=e83d0265c9865659af525e50e89b8edd");
+//            URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q="+city+",ru&appid=e83d0265c9865659af525e50e89b8edd");
 //            https://samples.openweathermap.org/data/2.5/forecast?q=+city+,ru&appid=b6907d289e10d714a6e88b30761fae22
 //            https://api.openweathermap.org/data/2.5/forecast?q=Moscow,ru&appid=e83d0265c9865659af525e50e89b8edd
             OkHttpClient okHttpClient = new OkHttpClient();
@@ -89,7 +90,7 @@ public class WeatherProvider {
 //            WeatherApi weatherApi = gson.fromJson(rwData.toString(), WeatherApi.class);
             //use toJson???
             WeatherApi weatherApi = gson.fromJson(rwData, WeatherApi.class);
-            Log.i("api", weatherApi.getCity().getName());
+            Log.i("api", weatherApi.getName());
 
 
 
@@ -127,7 +128,7 @@ public class WeatherProvider {
 
                 final WeatherApi weatherApi = getWeather("Moscow");
 //                final WeatherApi weatherApi = getWeatherByOkHttp("Moscow");
-                Log.i("loadData", weatherApi.getCity().getName());
+                Log.i("loadData", weatherApi.getName());
                 if (weatherApi == null) {
                     return;
                 }
