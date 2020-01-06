@@ -14,9 +14,9 @@ public class WeatherApi {
     @SerializedName("cnt")
     @Expose
     private Integer cnt;
-    @SerializedName("list")
-    @Expose
-    private java.util.List<com.example.weatherapp3.weatherApi.List> list = null;
+//    @SerializedName("list")
+//    @Expose
+//    private java.util.List<com.example.weatherapp3.weatherApi.List> list = null;
     @SerializedName("city")
     @Expose
     private City city;
@@ -45,13 +45,13 @@ public class WeatherApi {
         this.cnt = cnt;
     }
 
-    public java.util.List<com.example.weatherapp3.weatherApi.List> getList() {
-        return list;
-    }
-
-    public void setList(java.util.List<com.example.weatherapp3.weatherApi.List> list) {
-        this.list = list;
-    }
+//    public java.util.List<com.example.weatherapp3.weatherApi.List> getList() {
+//        return list;
+//    }
+//
+//    public void setList(java.util.List<com.example.weatherapp3.weatherApi.List> list) {
+//        this.list = list;
+//    }
 
     public City getCity() {
         return city;
