@@ -20,9 +20,17 @@ import javax.net.ssl.HttpsURLConnection;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public class WeatherProvider {
+    public static final String BASE_URL = "https://api.openweathermap.org/";
+    public static final String KEY = "e83d0265c9865659af525e50e89b8edd";
     Timer timer;
     Handler handler = new Handler();
 
@@ -40,69 +48,36 @@ public class WeatherProvider {
         startLoadData();
     }
 
-    private WeatherApi getWeather(String city) {
-        WeatherApi weatherApi = null; //fixme i need init weathet api??
+    interface Openweather {
+        @GET("data/2.5/forecast")
+        Call<WeatherApi> getWeather(@Query("q") String q, @Query("appid") String key);
 
-        try {
-//            URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + ",ru&appid=e83d0265c9865659af525e50e89b8edd");
-            URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",ru&appid=e83d0265c9865659af525e50e89b8edd");
-            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder rwData = new StringBuilder(1024);
-            String temp;
-            while ((temp = reader.readLine()) != null) {
-                rwData.append(temp).append("\n");
-            }
-            reader.close();
-            Log.i("rwData", rwData.toString());
-            Gson gson = new Gson();
-            weatherApi = gson.fromJson(rwData.toString(), WeatherApi.class);
-            Log.i("api", weatherApi.getCity().getName());
-            return weatherApi;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
-    static WeatherApi getWeatherByOkHttp(String city) {
-//        WeatherApi weatherApi = null;
-        try {
-//            URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+",ru&appid=e83d0265c9865659af525e50e89b8edd");
-            URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q="+city+",ru&appid=e83d0265c9865659af525e50e89b8edd");
-//            https://samples.openweathermap.org/data/2.5/forecast?q=+city+,ru&appid=b6907d289e10d714a6e88b30761fae22
-//            https://api.openweathermap.org/data/2.5/forecast?q=Moscow,ru&appid=e83d0265c9865659af525e50e89b8edd
-            OkHttpClient okHttpClient = new OkHttpClient();
+    private WeatherApi getWeatherByRetrofit(String city) {
+//        WeatherApi weatherApi = null; //fixme i need init weathet api??
+// https://api.openweathermap.org/data/2.5/forecast?q=Moscow,ru&appid=e83d0265c9865659af525e50e89b8edd
+//            URL url = new URL(BASE_URL + "data/2.5/forecast?q=" +city+ ",ru&appid=" + KEY);
 
-            Request request = new Request.Builder()
-                    .url(url)
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            Response response = okHttpClient.newCall(request).execute();
-            String rwData = response.body().string();
+
+        Call<WeatherApi> call = retrofit.create(Openweather.class)
+                .getWeather(city + ",ru", KEY);
 
 
-            Log.i("rwData", rwData.toString());
-//            JSONObject jsonObject = new JSONObject(rwData.toString());
-
-            Gson gson = new Gson();
-//            WeatherApi weatherApi = gson.fromJson(rwData.toString(), WeatherApi.class);
-            //use toJson???
-            WeatherApi weatherApi = gson.fromJson(rwData, WeatherApi.class);
-            Log.i("api", weatherApi.getCity().getName());
-
-
-
-//            return jsonObject;
-            return weatherApi;
-
+        try {
+            Response<WeatherApi> response = call.execute();
+            Log.i("getdata", response.body().getCity().getName());
+            return response.body();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
-
-
     }
+
 
     public void addListener(WeatherProviderListener listener) {
         //todo add listener
@@ -125,8 +100,9 @@ public class WeatherProvider {
             public void run() {
 
 
-                final WeatherApi weatherApi = getWeather("Moscow");
+                final WeatherApi weatherApi = getWeatherByRetrofit("Moscow");
 //                final WeatherApi weatherApi = getWeatherByOkHttp("Moscow");
+//                getWeatherByRetrofit("Omsk");// load data to log
                 Log.i("loadData", weatherApi.getCity().getName());
                 if (weatherApi == null) {
                     return;
