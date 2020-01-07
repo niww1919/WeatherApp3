@@ -18,11 +18,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp3.R;
 import com.example.weatherapp3.WeatherListAdapter;
+import com.example.weatherapp3.WeatherProvider;
+import com.example.weatherapp3.WeatherProviderListener;
+import com.example.weatherapp3.weatherApi.WeatherApi;
 import com.google.android.material.snackbar.Snackbar;
 
-public class HomeFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+
+public class HomeFragment extends Fragment{
 
     private HomeViewModel homeViewModel;
+    WeatherApi weather;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,13 +45,19 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //fixme how get weatherApi
+        List<WeatherApi> list;
+        list = new ArrayList<>();
+
+
         RecyclerView recyclerView = root.findViewById(R.id.rvWeatherList);
         recyclerView.setHasFixedSize(true);
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+        WeatherListAdapter adapter = new WeatherListAdapter(getContext(), weather);
 
 //        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new WeatherListAdapter());
+        recyclerView.setAdapter(adapter);
 
         //fixme decoration to cardview
         DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
@@ -66,4 +80,5 @@ public class HomeFragment extends Fragment {
 
 
     }
+
 }

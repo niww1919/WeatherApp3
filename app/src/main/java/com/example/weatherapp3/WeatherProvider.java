@@ -4,11 +4,14 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.example.weatherapp3.weatherApi.WeatherApi;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -90,15 +93,15 @@ public class WeatherProvider {
             public void run() {
 
 
-                final WeatherApi weatherApi = getWeatherByRetrofit("Moscow");
-//                final WeatherApi weatherApi = getWeatherByOkHttp("Moscow");
-//                getWeatherByRetrofit("Omsk");// load data to log
-                Log.i("loadData", weatherApi.getCity().getName());
-//                Log.i("loadData", weatherApi.getCod());
+                WeatherApi weatherApi = getWeatherByRetrofit("Moscow");
+
+                //fixme crash app when no internet
 
                 if (weatherApi == null) {
                     return;
                 }
+
+                Log.i("loadData", weatherApi.getCity().getName());
                 handler.post(new Runnable() {//new treads
                     @Override
                     public void run() {
@@ -113,7 +116,7 @@ public class WeatherProvider {
 
 
             }
-        }, 200, 100000);
+        }, 2000, 10000);
     }
 
     void stopLoadData() {
