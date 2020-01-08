@@ -56,6 +56,7 @@ public class WeatherProvider {
                 .build();
 
         Call<WeatherApi> call = retrofit.create(Openweather.class)
+//                .getWeather(city + ",ru", KEY);
                 .getWeather(city + ",ru", KEY);
 
 
@@ -94,6 +95,7 @@ public class WeatherProvider {
 
 
                 WeatherApi weatherApi = getWeatherByRetrofit("Moscow");
+//                WeatherApi weatherApi = getWeatherByRetrofit("Saint Petersburg");
 
                 //fixme crash app when no internet
 

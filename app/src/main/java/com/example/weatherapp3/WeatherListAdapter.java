@@ -77,12 +77,12 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
 //        void setData(String day, String icon, int temp) {
         void setData(int p) {
             tvListDay.setText(weather.getList().get(p).getDtTxt().substring(5,10));
-            tvListTemp.setText(String.valueOf(weather.getList().get(p).getMain().getTemp()));
+            tvListTemp.setText(String.valueOf((weather.getList().get(p).getMain().getTemp())-273).substring(0,4));
 
             Picasso.get()
 //                    .load("http://openweathermap.org/img/wn/"+weather.getList().get(0).getWeather().get(0).getIcon() +"@2x.png")
                     .load("http://openweathermap.org/img/wn/"+weather.getList().get(p).getWeather().get(0).getIcon() +"@2x.png")
-                    .resize(200,200)
+//                    .resize(200,200)
                     .into(tvListIcon);
         }
     }

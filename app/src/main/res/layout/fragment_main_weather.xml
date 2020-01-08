@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
         style="@style/mainFragment">
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvData"
@@ -24,7 +25,9 @@
             android:id="@+id/tvCityName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="City Name" />
+            android:text="City Name"
+            style="@style/mainFragment"
+            />
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivIcon"
             android:layout_width="wrap_content"
@@ -34,6 +37,7 @@
             android:id="@+id/tvTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/mainFragment"
             android:text="Temp" />
 
 

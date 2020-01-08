@@ -44,7 +44,6 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
                 textView.setText(s);
             }
         });
-
         return root;
     }
 
@@ -60,16 +59,14 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
         WeatherProvider.getInstance().addListener(this);
         //fixme 01-08 12:53:22.227 16640-16640/? E/RecyclerView: No adapter attached; skipping layout
 //        WeatherProvider.getInstance().addListener(this);
-
-
-
     }
 
 
     @Override
     public void upDateWeather(WeatherApi weatherApi) {
 
-        RecyclerView recyclerView = getActivity().findViewById(R.id.rvWeatherList);
+//        RecyclerView recyclerView = getActivity().findViewById(R.id.rvWeatherList);
+        RecyclerView recyclerView = getView().findViewById(R.id.rvWeatherList);
         recyclerView.setHasFixedSize(true);
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
@@ -78,7 +75,7 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
 //        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        //fixme decoration to cardview
+        //fixme add new decoration on timer
         DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
         decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
         recyclerView.addItemDecoration(decoration);

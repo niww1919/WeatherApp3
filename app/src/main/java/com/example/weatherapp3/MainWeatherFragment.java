@@ -51,16 +51,14 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
         //todo update data
 
         ((TextView)getActivity().findViewById(R.id.tvCityName)).setText(weatherApi.getCity().getName());
-        ((TextView)getActivity().findViewById(R.id.tvData)).setText(String.valueOf(weatherApi.getList().get(0).getDtTxt()));
-//        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(weatherApi.getList().indexOf(0)));
-        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(weatherApi.getList().get(0).getMain().getTemp()));
+        ((TextView)getActivity().findViewById(R.id.tvData)).setText(weatherApi.getList().get(0).getDtTxt().substring(5,10));
+        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(weatherApi.getList().get(0).getMain().getTemp()-273).substring(0,4));
 
         Picasso.get()
                 .load("http://openweathermap.org/img/wn/"+weatherApi.getList().get(0).getWeather().get(0).getIcon() +"@2x.png")
                 .resize(200,200)
                 .into((ImageView)getActivity().findViewById(R.id.ivIcon));
 
-//        ((ImageView)getActivity().findViewById(R.id.tvIcon)).(weatherApi.getList().get(0).getWeather().get(0).getIcon());
         ((TextView)getActivity().findViewById(R.id.tvClouds)).setText("Cloudiness, % "+ weatherApi.getList().get(0).getClouds().getAll());
         ((TextView)getActivity().findViewById(R.id.tvWind)).setText("Wind speed, m/s "+ weatherApi.getList().get(0).getWind().getSpeed());
 //        ((TextView)getActivity().findViewById(R.id.tvRain)).setText("Rain, mm "+ weatherApi.getList().get(0).getRain().get3h());//fixme is null
