@@ -5,18 +5,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.weatherapp3.CityPreferences;
 import com.example.weatherapp3.R;
+import com.example.weatherapp3.WeatherListAdapter;
+import com.example.weatherapp3.WeatherProvider;
+import com.example.weatherapp3.WeatherProviderListener;
+import com.example.weatherapp3.weatherApi.WeatherApi;
+import com.google.android.material.snackbar.Snackbar;
 
-public class HomeFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+
+public class HomeFragment extends Fragment implements WeatherProviderListener{
 
     private HomeViewModel homeViewModel;
+    WeatherApi weather;
+    CityPreferences cityPreferences;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,6 +46,45 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        cityPreferences = new CityPreferences(getActivity());
+
         return root;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        WeatherProvider.getInstance().addListener(this,cityPreferences);
+        //fixme  E/RecyclerView: No adapter attached; skipping layout
+//        WeatherProvider.getInstance().addListener(this);
+    }
+
+
+    @Override
+    public void upDateWeather(WeatherApi weatherApi) {
+
+//        RecyclerView recyclerView = getActivity().findViewById(R.id.rvWeatherList);
+        RecyclerView recyclerView = getView().findViewById(R.id.rvWeatherList);
+        recyclerView.setHasFixedSize(true);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+        WeatherListAdapter adapter = new WeatherListAdapter(getContext(), weatherApi);
+
+//        recyclerView.setLayoutManager(layoutManager);
+        adapter.notifyDataSetChanged();  //fixme wtf
+        recyclerView.setAdapter(adapter);
+
+        //fixme add new decoration on timer
+        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
+        decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
+        recyclerView.addItemDecoration(decoration);
+    }
+
 }

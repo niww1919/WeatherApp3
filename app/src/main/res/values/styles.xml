@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="mainFragment">
+        <item name="android:textSize">25sp</item>
+        <item name="android:padding">5dp</item>
+        mainFragment</style>
+
+
 </resources>
