@@ -1,5 +1,6 @@
 package com.example.weatherapp3;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -17,6 +18,8 @@ import com.squareup.picasso.Picasso;
 
 public class MainWeatherFragment extends Fragment implements WeatherProviderListener{
 
+    CityPreferences cityPreferences;
+
     public MainWeatherFragment() {
         // Required empty public constructor
     }
@@ -26,6 +29,7 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        cityPreferences = new CityPreferences(getActivity());
         return inflater.inflate(R.layout.fragment_main_weather, container, false);
     }
 
@@ -43,7 +47,7 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
     @Override
     public void onResume() {
         super.onResume();
-        WeatherProvider.getInstance().addListener(this);
+        WeatherProvider.getInstance().addListener(this, cityPreferences);
     }
 
     @Override

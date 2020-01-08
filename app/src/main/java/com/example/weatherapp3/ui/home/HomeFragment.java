@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.weatherapp3.CityPreferences;
 import com.example.weatherapp3.R;
 import com.example.weatherapp3.WeatherListAdapter;
 import com.example.weatherapp3.WeatherProvider;
@@ -30,6 +31,7 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
 
     private HomeViewModel homeViewModel;
     WeatherApi weather;
+    CityPreferences cityPreferences;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,6 +46,9 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
                 textView.setText(s);
             }
         });
+
+        cityPreferences = new CityPreferences(getActivity());
+
         return root;
     }
 
@@ -56,8 +61,8 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
     public void onResume() {
 
         super.onResume();
-        WeatherProvider.getInstance().addListener(this);
-        //fixme 01-08 12:53:22.227 16640-16640/? E/RecyclerView: No adapter attached; skipping layout
+        WeatherProvider.getInstance().addListener(this,cityPreferences);
+        //fixme  E/RecyclerView: No adapter attached; skipping layout
 //        WeatherProvider.getInstance().addListener(this);
     }
 
@@ -73,6 +78,7 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
         WeatherListAdapter adapter = new WeatherListAdapter(getContext(), weatherApi);
 
 //        recyclerView.setLayoutManager(layoutManager);
+        adapter.notifyDataSetChanged();  //fixme wtf
         recyclerView.setAdapter(adapter);
 
         //fixme add new decoration on timer

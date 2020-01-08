@@ -1,5 +1,6 @@
 package com.example.weatherapp3;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;
 
@@ -24,6 +25,8 @@ public class WeatherProvider {
     private static final String KEY = "e83d0265c9865659af525e50e89b8edd";
     private Timer timer;
     private Handler handler = new Handler();
+    CityPreferences cityPreferences;
+
 
     public static WeatherProvider instance = null;
 
@@ -73,11 +76,12 @@ public class WeatherProvider {
     }
 
 
-    public void addListener(WeatherProviderListener listener) {
+    public void addListener(WeatherProviderListener listener, CityPreferences cityPreferences) {
         //todo add listener
         if (!listeners.contains(listener)) {
             listeners.add(listener);
         }
+        this.cityPreferences = cityPreferences;
     }
 
     public void removeListener(WeatherProviderListener listener) {
@@ -94,7 +98,8 @@ public class WeatherProvider {
             public void run() {
 
 
-                WeatherApi weatherApi = getWeatherByRetrofit("Moscow");
+//                WeatherApi weatherApi = getWeatherByRetrofit("Moscow");
+                WeatherApi weatherApi = getWeatherByRetrofit(cityPreferences.getCity());
 //                WeatherApi weatherApi = getWeatherByRetrofit("Saint Petersburg");
 
                 //fixme crash app when no internet
@@ -104,7 +109,7 @@ public class WeatherProvider {
                 }
 
                 Log.i("loadData", weatherApi.getCity().getName());
-                handler.post(new Runnable() {//new treads
+                handler.post(new Runnable() {
                     @Override
                     public void run() {
                         //todo load data

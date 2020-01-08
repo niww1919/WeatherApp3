@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,10 +18,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.weatherapp3.CityPreferences;
 import com.example.weatherapp3.R;
+import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 public class SettingFragment extends Fragment {
+    CityPreferences cityPreferences;
+    EditText editText;
+
     public static final String LINK_TO_GITHUB = "https://github.com/niww1919/WeatherApp3";
 
     private SettingsViewModel settingsViewModel;
@@ -38,6 +44,10 @@ public class SettingFragment extends Fragment {
             }
         });
 
+
+        cityPreferences = new CityPreferences(getActivity());
+        editText = root.findViewById(R.id.etCurrentCity);
+        editText.setText(cityPreferences.getCity());
 
 
         root.findViewById(R.id.buttonLinkToGitHub).setOnClickListener(new View.OnClickListener() {
@@ -57,5 +67,9 @@ public class SettingFragment extends Fragment {
         return root;
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        cityPreferences.setCity(String.valueOf(editText.getText()));
+    }
 }
