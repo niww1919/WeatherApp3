@@ -82,7 +82,7 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
             Picasso.get()
 //                    .load("http://openweathermap.org/img/wn/"+weather.getList().get(0).getWeather().get(0).getIcon() +"@2x.png")
                     .load("http://openweathermap.org/img/wn/"+weather.getList().get(p).getWeather().get(0).getIcon() +"@2x.png")
-//                    .resize(200,200)
+                    .resize(200,200)
                     .into(tvListIcon);
         }
     }

@@ -25,8 +25,16 @@
         android:layout_height="wrap_content"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
         app:layout_constraintTop_toBottomOf="@id/mainWeatherFragment"
+        android:id="@+id/tvNextDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/mainFragment"
+        android:text="Next 5 days" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintTop_toBottomOf="@id/tvNextDays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rvWeatherList" />

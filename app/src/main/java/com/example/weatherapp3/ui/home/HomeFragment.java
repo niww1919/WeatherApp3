@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
     private HomeViewModel homeViewModel;
     WeatherApi weather;
     CityPreferences cityPreferences;
+    WeatherListAdapter adapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
         });
 
         cityPreferences = new CityPreferences(getActivity());
-        WeatherProvider.getInstance().addListener(this,cityPreferences);
+//        WeatherProvider.getInstance().addListener(this,cityPreferences);
 
 
         return root;
@@ -70,7 +71,7 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
     public void onResume() {
 
         super.onResume();
-//        WeatherProvider.getInstance().addListener(this,cityPreferences);
+        WeatherProvider.getInstance().addListener(this,cityPreferences);
         //fixme  E/RecyclerView: No adapter attached; skipping layout
 //        WeatherProvider.getInstance().addListener(this);
     }
@@ -83,7 +84,7 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
 
-        WeatherListAdapter adapter = new WeatherListAdapter(getContext(), weatherApi);
+        adapter = new WeatherListAdapter(getContext(), weatherApi);
 
 //        recyclerView.setLayoutManager(layoutManager);
         adapter.notifyDataSetChanged();  //fixme wtf
