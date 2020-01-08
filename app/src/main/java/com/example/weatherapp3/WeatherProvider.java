@@ -116,7 +116,7 @@ public class WeatherProvider {
 
 
             }
-        }, 2000, 10000);
+        }, 2000, 100000);
     }
 
     void stopLoadData() {

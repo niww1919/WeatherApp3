@@ -45,25 +45,6 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
             }
         });
 
-        //fixme how get weatherApi
-        List<WeatherApi> list;
-        list = new ArrayList<>();
-//        WeatherProvider.getInstance().addListener(this);
-//
-//        RecyclerView recyclerView = root.findViewById(R.id.rvWeatherList);
-//        recyclerView.setHasFixedSize(true);
-////        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
-//        WeatherListAdapter adapter = new WeatherListAdapter(getContext(), weather);
-//
-////        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(adapter);
-//
-//        //fixme decoration to cardview
-//        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
-//        decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
-//        recyclerView.addItemDecoration(decoration);
-
         return root;
     }
 
@@ -74,9 +55,11 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
 
     @Override
     public void onResume() {
+
         super.onResume();
         WeatherProvider.getInstance().addListener(this);
-
+        //fixme 01-08 12:53:22.227 16640-16640/? E/RecyclerView: No adapter attached; skipping layout
+//        WeatherProvider.getInstance().addListener(this);
 
 
 
