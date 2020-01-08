@@ -67,6 +67,7 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
 //        ((TextView)getActivity().findViewById(R.id.tvSnow)).setText("Snow "+ weatherApi.getList().get(0).getSnow().get3h());
     }
 
+
     @Override
     public void onPause() {
         super.onPause();

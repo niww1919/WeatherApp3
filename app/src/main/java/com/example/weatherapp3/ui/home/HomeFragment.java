@@ -26,7 +26,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment implements WeatherProviderListener{
 
     private HomeViewModel homeViewModel;
     WeatherApi weather;
@@ -48,21 +48,21 @@ public class HomeFragment extends Fragment{
         //fixme how get weatherApi
         List<WeatherApi> list;
         list = new ArrayList<>();
-
-
-        RecyclerView recyclerView = root.findViewById(R.id.rvWeatherList);
-        recyclerView.setHasFixedSize(true);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
-        WeatherListAdapter adapter = new WeatherListAdapter(getContext(), weather);
-
-//        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-
-        //fixme decoration to cardview
-        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
-        decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
-        recyclerView.addItemDecoration(decoration);
+//        WeatherProvider.getInstance().addListener(this);
+//
+//        RecyclerView recyclerView = root.findViewById(R.id.rvWeatherList);
+//        recyclerView.setHasFixedSize(true);
+////        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+//        WeatherListAdapter adapter = new WeatherListAdapter(getContext(), weather);
+//
+////        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(adapter);
+//
+//        //fixme decoration to cardview
+//        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
+//        decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
+//        recyclerView.addItemDecoration(decoration);
 
         return root;
     }
@@ -75,10 +75,30 @@ public class HomeFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-//        Snackbar.make(getView(),"Good", Snackbar.LENGTH_SHORT).show();
-        Toast.makeText(getContext(),"Good",Toast.LENGTH_SHORT).show();
+        WeatherProvider.getInstance().addListener(this);
 
 
+
+
+    }
+
+
+    @Override
+    public void upDateWeather(WeatherApi weatherApi) {
+
+        RecyclerView recyclerView = getActivity().findViewById(R.id.rvWeatherList);
+        recyclerView.setHasFixedSize(true);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+        WeatherListAdapter adapter = new WeatherListAdapter(getContext(), weatherApi);
+
+//        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
+        //fixme decoration to cardview
+        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
+        decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
+        recyclerView.addItemDecoration(decoration);
     }
 
 }
