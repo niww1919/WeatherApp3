@@ -123,7 +123,7 @@ public class WeatherProvider {
 
 
             }
-        }, 2000, 100000);
+        }, 200, 100000);
     }
 
     void stopLoadData() {

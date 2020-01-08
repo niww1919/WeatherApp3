@@ -50,7 +50,7 @@ public class SettingFragment extends Fragment {
         editText.setText(cityPreferences.getCity());
 
 
-        root.findViewById(R.id.buttonLinkToGitHub).setOnClickListener(new View.OnClickListener() {
+        root.findViewById(R.id.ivGit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Uri link = Uri.parse(LINK_TO_GITHUB);
@@ -62,7 +62,14 @@ public class SettingFragment extends Fragment {
                 .load("https://square.github.io/picasso/static/icon-github.png")
                 .into((ImageView) root.findViewById(R.id.ivGit));
 
-//        ((Button)root.findViewById(R.id.buttonLinkToGitHub)).add
+        root.findViewById(R.id.buttonToGatLocation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
 
         return root;
     }
