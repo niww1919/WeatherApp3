@@ -78,6 +78,7 @@ public class WeatherProvider {
     }
 
 
+
     public void addListener(WeatherProviderListener listener, CityPreferences cityPreferences) {
         //todo add listener
         if (!listeners.contains(listener)) {
