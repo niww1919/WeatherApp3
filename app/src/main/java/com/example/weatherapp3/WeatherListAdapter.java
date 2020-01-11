@@ -106,11 +106,6 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
                     .load("http://openweathermap.org/img/wn/"+weather.getList().get(p).getWeather().get(0).getIcon() +"@2x.png")
 //                    .resize(200,200)
                     .into(tvListIcon);
-
-
-
-//            llOfList.addView(new CustomView(context));
-//            cardView.setCardBackgroundColor(Color.BLUE);
         }
     }
 }

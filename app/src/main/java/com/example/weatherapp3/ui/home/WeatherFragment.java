@@ -78,20 +78,14 @@ public class WeatherFragment extends Fragment implements WeatherProviderListener
 
         adapter = new WeatherListAdapter(getContext(), weatherApi);
 
-//        recyclerView.setLayoutManager(layoutManager);
-        adapter.notifyDataSetChanged();  //fixme wtf
+        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
 
-        //fixme add new decoration on timer
-//        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
-//        decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
-//        recyclerView.addItemDecoration(decoration);
     }
     @Override
     public void onPause() {
         super.onPause();
         WeatherProvider.getInstance().removeListener(this); //fixme
-//        WeatherProvider.getInstance().;//fixme
 
     }
 
