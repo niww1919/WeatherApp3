@@ -49,9 +49,6 @@ public class WeatherProvider {
     }
 
     private WeatherApi getWeatherByRetrofit(String city) {
-//        WeatherApi weatherApi = null; //fixme i need init weathet api??
-// https://api.openweathermap.org/data/2.5/forecast?q=Moscow,ru&appid=e83d0265c9865659af525e50e89b8edd
-//            URL url = new URL(BASE_URL + "data/2.5/forecast?q=" +city+ ",ru&appid=" + KEY);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -65,8 +62,6 @@ public class WeatherProvider {
 
         try {
             Response<WeatherApi> response = call.execute();
-//            if (response.isSuccessful())
-//            Log.i("getdata", response.body().getCity().getName());//fixme
             return response.body();
 
         } catch (IOException e) {
@@ -107,15 +102,11 @@ public class WeatherProvider {
 
                 }
                 WeatherApi weatherApi = getWeatherByRetrofit(cityPreferences.getCity());
-//                WeatherApi weatherApi = getWeatherByRetrofit("Saint Petersburg");
-
-                //fixme crash app when no internet
 
                 if (weatherApi == null) {
                     return;
                 }
 
-//                Log.i("loadData", weatherApi.getCity().getName()); //fixme
                 handler.post(new Runnable() {
                     @Override
                     public void run() {

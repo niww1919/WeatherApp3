@@ -66,8 +66,6 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
 
         ((TextView)getActivity().findViewById(R.id.tvClouds)).setText("Cloudiness, % "+ weatherApi.getList().get(0).getClouds().getAll());
         ((TextView)getActivity().findViewById(R.id.tvWind)).setText("Wind speed, m/s "+ weatherApi.getList().get(0).getWind().getSpeed());
-//        ((TextView)getActivity().findViewById(R.id.tvRain)).setText("Rain, mm "+ weatherApi.getList().get(0).getRain().get3h());//fixme is null
-//        ((TextView)getActivity().findViewById(R.id.tvSnow)).setText("Snow "+ weatherApi.getList().get(0).getSnow().get3h());
     }
 
 
