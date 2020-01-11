@@ -56,7 +56,8 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
 
         ((TextView)getActivity().findViewById(R.id.tvCityName)).setText(weatherApi.getCity().getName());
         ((TextView)getActivity().findViewById(R.id.tvData)).setText(weatherApi.getList().get(0).getDtTxt().substring(5,10));
-        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(weatherApi.getList().get(0).getMain().getTemp()-273).substring(0,4));
+        ((TextView)getActivity().findViewById(R.id.tvTemp)).setText(String.valueOf(Math.round((weatherApi.getList().get(0).getMain().getTemp())-273)));
+
 
         Picasso.get()
                 .load("http://openweathermap.org/img/wn/"+weatherApi.getList().get(0).getWeather().get(0).getIcon() +"@2x.png")
@@ -74,5 +75,6 @@ public class MainWeatherFragment extends Fragment implements WeatherProviderList
     public void onPause() {
         super.onPause();
         WeatherProvider.getInstance().removeListener(this); //fixme
+        WeatherProvider.getInstance().stopLoadData();//fixme
     }
 }

@@ -3,53 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:background="@color/colorAccent"
     android:gravity="center"
+    android:orientation="horizontal"
     tools:context=".MainWeatherFragment"
->
+
+    >
+
 
     <!-- TODO: Update blank fragment layout -->
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        style="@style/mainFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        style="@style/mainFragment">
+        android:gravity="center"
+        android:orientation="vertical">
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvData"
+            style="@style/mainFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Data" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCityName"
+            style="@style/mainFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="City Name"
-            style="@style/mainFragment"
-            />
+            android:text="City Name" />
+
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivIcon"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/mainFragment"
-            android:text="Temp" />
+            android:layout_height="wrap_content" />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        style="@style/mainFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        style="@style/mainFragment">
+        android:gravity="center"
+        android:orientation="vertical">
 
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTemp"
+            style="@style/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvClouds"
@@ -63,17 +71,17 @@
             android:layout_height="wrap_content"
             android:text="Wind" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvRain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rain" />
+        <!--        <androidx.appcompat.widget.AppCompatTextView-->
+        <!--            android:id="@+id/tvRain"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Rain" />-->
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvSnow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Snow" />
+        <!--        <androidx.appcompat.widget.AppCompatTextView-->
+        <!--            android:id="@+id/tvSnow"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Snow" />-->
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
