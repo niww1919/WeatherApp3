@@ -18,7 +18,7 @@ public class CustomView extends View {
     public static final int DEF_RADIUS = 0;
     public static final int DEF_COLOR = 0;
     private int mPoint;
-    Paint paint;
+    Paint mPaint;
     Paint paintArc;
     Paint paintText;
     Paint paintTextWeather;
@@ -46,6 +46,7 @@ public class CustomView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(200,200);
     }
 
 
@@ -65,49 +66,25 @@ public class CustomView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-
-        RectF mRectF = new RectF(20, 20, 400, 400);
-        Path path = new Path();
-        path.addArc(mRectF, 180, (180 * hour) / 24);
-//        mRectF.centerX(g)
-//        canvas.drawCircle(radius,radius,radius,paint);
-        canvas.drawArc(mRectF, 180, 180, false, paintArc);
-        canvas.drawArc(mRectF, 180, (180 * hour) / 24, false, paint);
-        canvas.drawText("-10 C", 200, 200, paintTextWeather);
-        canvas.drawTextOnPath("Hour " + hour, path, 0, 10, paintText);
-
-    }
-
-    private void initPaint(float radius, int color) {
-
-        this.radius = radius;
-        paint = new Paint();
-        paint.setColor(color);
-        paint.setAntiAlias(true);//todo what it is?
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setTextSize(radius);
-        paint.setStrokeWidth(30);
-
-        paintArc = new Paint();
-        paintArc.setAntiAlias(true);
-        paintArc.setColor(Color.YELLOW);
-        paintArc.setStrokeWidth(30);
-        paintArc.setStyle(Paint.Style.STROKE);
-
-        paintText = new Paint();
-        paintText.setColor(Color.YELLOW);
-        paintText.setTextSize(30);
-        paintText.setTextAlign(Paint.Align.CENTER);
-
         paintTextWeather = new Paint();
         paintTextWeather.setColor(Color.RED);
         paintTextWeather.setTextSize(100);
         paintTextWeather.setTextAlign(Paint.Align.CENTER);
 
+        calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+//        canvas.drawText("-10 C", 0, 0, paintTextWeather);
+
+        mPaint = new Paint();
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(Color.BLUE);
+        mPaint.setStrokeWidth(3);
+
+        canvas.drawPaint(mPaint);
 
     }
+
 
 
     public float getRadius() {

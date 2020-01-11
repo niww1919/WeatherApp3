@@ -27,10 +27,12 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
     private LayoutInflater inflater;
     private WeatherApi weather;
     List<Color> colorList;
+    Context context;
 
     public WeatherListAdapter(Context context, WeatherApi weather) {
         this.inflater = LayoutInflater.from(context);
         this.weather = weather;
+        this.context = context;
     }
 
     @NonNull
@@ -107,7 +109,7 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
 
 
 
-//            llOfList.addView(customView);
+//            llOfList.addView(new CustomView(context));
 //            cardView.setCardBackgroundColor(Color.BLUE);
         }
     }

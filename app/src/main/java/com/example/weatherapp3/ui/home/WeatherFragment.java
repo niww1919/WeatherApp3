@@ -4,15 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,14 +18,10 @@ import com.example.weatherapp3.WeatherListAdapter;
 import com.example.weatherapp3.WeatherProvider;
 import com.example.weatherapp3.WeatherProviderListener;
 import com.example.weatherapp3.weatherApi.WeatherApi;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
-import java.util.List;
+public class WeatherFragment extends Fragment implements WeatherProviderListener{
 
-public class HomeFragment extends Fragment implements WeatherProviderListener{
-
-    private HomeViewModel homeViewModel;
+    private WeatherViewModel weatherViewModel;
     WeatherApi weather;
     CityPreferences cityPreferences;
     WeatherListAdapter adapter;
@@ -37,16 +29,16 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        weatherViewModel =
+                ViewModelProviders.of(this).get(WeatherViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_weather, container, false);
+//        final TextView textView = root.findViewById(R.id.text_home);
+//        weatherViewModel.getText().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
 
         cityPreferences = new CityPreferences(getActivity());
 //        WeatherProvider.getInstance().addListener(this,cityPreferences);
@@ -91,9 +83,9 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
         recyclerView.setAdapter(adapter);
 
         //fixme add new decoration on timer
-        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
-        decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
-        recyclerView.addItemDecoration(decoration);
+//        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL);
+//        decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
+//        recyclerView.addItemDecoration(decoration);
     }
     @Override
     public void onPause() {

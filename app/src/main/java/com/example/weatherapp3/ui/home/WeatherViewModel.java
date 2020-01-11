@@ -8,12 +8,12 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.weatherapp3.CityPreferences;
 
-public class HomeViewModel extends ViewModel {
+public class WeatherViewModel extends ViewModel {
 
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public WeatherViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("Weather");
     }
