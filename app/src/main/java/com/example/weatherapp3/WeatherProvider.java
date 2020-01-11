@@ -66,11 +66,13 @@ public class WeatherProvider {
         try {
             Response<WeatherApi> response = call.execute();
 //            if (response.isSuccessful())
-            Log.i("getdata", response.body().getCity().getName());
+//            Log.i("getdata", response.body().getCity().getName());//fixme
             return response.body();
 
         } catch (IOException e) {
             e.printStackTrace();
+            Log.i("getdata", "City incorrect");//fixme
+
             return null;
         }
     }
@@ -99,6 +101,10 @@ public class WeatherProvider {
 
 
 //                WeatherApi weatherApi = getWeatherByRetrofit("Moscow");
+                if (cityPreferences.getCity() == null) {
+                    cityPreferences.setCity("Orenburg");
+
+                }
                 WeatherApi weatherApi = getWeatherByRetrofit(cityPreferences.getCity());
 //                WeatherApi weatherApi = getWeatherByRetrofit("Saint Petersburg");
 
@@ -108,7 +114,7 @@ public class WeatherProvider {
                     return;
                 }
 
-                Log.i("loadData", weatherApi.getCity().getName());
+//                Log.i("loadData", weatherApi.getCity().getName()); //fixme
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -123,7 +129,7 @@ public class WeatherProvider {
 
 
             }
-        }, 200, 100000);
+        }, 200, 10000);
     }
 
     void stopLoadData() {

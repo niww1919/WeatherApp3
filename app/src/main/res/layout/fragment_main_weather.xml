@@ -6,6 +6,8 @@
     android:orientation="horizontal"
     android:gravity="center"
     tools:context=".MainWeatherFragment"
+    android:background="@color/colorAccent"
+
 >
 
     <!-- TODO: Update blank fragment layout -->

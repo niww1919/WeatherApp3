@@ -95,5 +95,12 @@ public class HomeFragment extends Fragment implements WeatherProviderListener{
         decoration.setDrawable(getActivity().getDrawable(R.drawable.weather_day_separator));
         recyclerView.addItemDecoration(decoration);
     }
+    @Override
+    public void onPause() {
+        super.onPause();
+        WeatherProvider.getInstance().removeListener(this); //fixme
+//        WeatherProvider.getInstance().;//fixme
+
+    }
 
 }

@@ -33,7 +33,7 @@ import com.squareup.picasso.Picasso;
 
 import static android.content.Context.LOCATION_SERVICE;
 
-public class SettingFragment extends Fragment  implements ActivityCompat.OnRequestPermissionsResultCallback {
+public class SettingFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback {
     CityPreferences cityPreferences;
     EditText editText;
     public static final int PERMISSION_REQUEST_CODE = 10;
@@ -60,7 +60,12 @@ public class SettingFragment extends Fragment  implements ActivityCompat.OnReque
 
         cityPreferences = new CityPreferences(getActivity());
         editText = root.findViewById(R.id.etCurrentCity);
-        editText.setText(cityPreferences.getCity());
+        if (editText.getText() == null) {
+            editText.setText("Orenburg");
+        } else {
+            editText.setText(cityPreferences.getCity());
+
+        }
 
 
         root.findViewById(R.id.ivGit).setOnClickListener(new View.OnClickListener() {
@@ -83,8 +88,8 @@ public class SettingFragment extends Fragment  implements ActivityCompat.OnReque
                         || ActivityCompat.checkSelfPermission(
                         getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     requestLocation();
-                    ((TextView)root.findViewById(R.id.tvLocation))
-                            .setText(cityPreferences.getLatitude()+" "+ cityPreferences.getLongitude());
+                    ((TextView) root.findViewById(R.id.tvLocation))
+                            .setText(cityPreferences.getLatitude() + " " + cityPreferences.getLongitude());
 
 
                 } else {
@@ -102,9 +107,9 @@ public class SettingFragment extends Fragment  implements ActivityCompat.OnReque
     @Override
     public void onPause() {
         super.onPause();
-        cityPreferences.setCity(String.valueOf(editText.getText()));
-    }
+            cityPreferences.setCity(String.valueOf(editText.getText()));
 
+    }
 
 
     private void requestLocation() {
@@ -123,8 +128,8 @@ public class SettingFragment extends Fragment  implements ActivityCompat.OnReque
                 @Override
                 public void onLocationChanged(Location location) {
 
-                    cityPreferences.setLatitude(Double.toString(location.getLatitude()).substring(0,7));
-                    cityPreferences.setLongitude(Double.toString(location.getLongitude()).substring(0,7));
+                    cityPreferences.setLatitude(Double.toString(location.getLatitude()).substring(0, 7));
+                    cityPreferences.setLongitude(Double.toString(location.getLongitude()).substring(0, 7));
                     cityPreferences.setAccuracy(Float.toString(location.getAccuracy()));
                     Log.i("location", Double.toString(location.getLongitude()));
                     Log.i("location", Double.toString(location.getLatitude()));
@@ -164,6 +169,7 @@ public class SettingFragment extends Fragment  implements ActivityCompat.OnReque
                     PERMISSION_REQUEST_CODE);
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == PERMISSION_REQUEST_CODE) {   // Это та самая пермиссия, что мы запрашивали?
